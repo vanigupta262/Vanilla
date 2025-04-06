@@ -1,0 +1,1200 @@
+TC1:
+1, 2, 3
+Input: vector(int, 3) v := 3 
+ [1, 2, 3]; print(v);
+AST: declare(vectorint 3, v); (v = vector(3, [1, 2, 3])); print(v)
+Type: Statement
+Result: VUnit
+
+TC2:
+1, 2
+3, 4
+Input: matrix(int, 2, 2) m := 2, 2 
+ [[1, 2], [3, 4]]; print(m);
+AST: declare(matrixint 2,2, m); (m = matrix(2,2,[[1, 2], [3, 4]])); print(m)
+Type: Statement
+Result: VUnit
+
+TC3:
+8
+Input: int a := 5 + 3; print(a);
+AST: declare(int, a); (a = (5 + 3)); print(a)
+Type: Statement
+Result: VUnit
+
+TC4:
+6.
+Input: float b := 2.0 * 3.0; print(b);
+AST: declare(float, b); (b = (2. * 3.)); print(b)
+Type: Statement
+Result: VUnit
+
+TC5:
+32.
+Input: vector(float, 3) v1 := 3 
+ [1.0, 2.0, 3.0]; vector(float, 3) v2 := 3 
+ [4.0, 5.0, 6.0]; float d := v1 . v2; print(d);
+AST: declare(vectorfloat 3, v1); (v1 = vector(3, [1.0, 2.0, 3.0])); declare(vectorfloat 3, v2); (v2 = vector(3, [4.0, 5.0, 6.0])); declare(float, d); (d = (v1 . v2)); print(d)
+Type: Statement
+Result: VUnit
+
+TC6:
+0
+1
+2
+3
+Input: int x := 0; for (x := 0; x < 3; x := x + 1;) { print(x); } print(x);
+AST: declare(int, x); (x = 0); for((x = 0); (x < 3); (x = (x + 1))) print(x); print(x)
+Type: Statement
+Result: VUnit
+
+TC7:
+0
+Input: int x := 5; if (x < 3) { print(x); } else { print(0); }
+AST: declare(int, x); (x = 5); if((x < 3)) print(x) else print(0)
+Type: Statement
+Result: VUnit
+
+TC8:
+-2
+Input: matrix(int, 3, 3) m := 3, 3 
+ [[2, 5, 3],[1, 2, 1],[1, 3, 4]]; int det_m := det(m); print(det_m);
+AST: declare(matrixint 3,3, m); (m = matrix(3,3,[[2, 5, 3],[1, 2, 1],[1, 3, 4]])); declare(int, det_m); (det_m = det(m)); print(det_m)
+Type: Statement
+Result: VUnit
+
+TC9:
+19, 22
+43, 50
+Input: matrix (int, 2, 2) m := 2, 2 
+ [[1, 2], [3, 4]]; matrix(int, 2, 2) n := 2, 2 
+ [[5, 6], [7, 8]]; matrix(int, 2, 2) r := m . n; print(r);
+AST: declare(matrixint 2,2, m); (m = matrix(2,2,[[1, 2], [3, 4]])); declare(matrixint 2,2, n); (n = matrix(2,2,[[5, 6], [7, 8]])); declare(matrixint 2,2, r); (r = (m . n)); print(r)
+Type: Statement
+Result: VUnit
+
+TC10:
+1, 3
+2, 4
+Input: matrix (int, 2, 2) m := 2, 2 
+ [[1, 2], [3, 4]]; matrix(int, 2, 2) n := transpose(m); print(n);
+AST: declare(matrixint 2,2, m); (m = matrix(2,2,[[1, 2], [3, 4]])); declare(matrixint 2,2, n); (n = transpose(m)); print(n)
+Type: Statement
+Result: VUnit
+
+TC11:
+6, 8
+10, 12
+Input: matrix(int, 2, 2) m1 := 2, 2 
+ [[1, 2], [3, 4]]; matrix(int, 2, 2) m2 := 2, 2 
+ [[5, 6], [7, 8]]; matrix(int, 2, 2) r := m1 + m2; print(r);
+AST: declare(matrixint 2,2, m1); (m1 = matrix(2,2,[[1, 2], [3, 4]])); declare(matrixint 2,2, m2); (m2 = matrix(2,2,[[5, 6], [7, 8]])); declare(matrixint 2,2, r); (r = (m1 + m2)); print(r)
+Type: Statement
+Result: VUnit
+
+TC12:
+8, 10, 12
+14, 16, 18
+Input: matrix(int, 2, 3) m1 := 2, 3 
+ [[1, 2, 3], [4, 5, 6]]; matrix(int, 2, 3) m2 := 2, 3 
+ [[7, 8, 9], [10, 11, 12]]; matrix(int, 2, 3) r := m1 + m2; print(r);
+AST: declare(matrixint 2,3, m1); (m1 = matrix(2,3,[[1, 2, 3], [4, 5, 6]])); declare(matrixint 2,3, m2); (m2 = matrix(2,3,[[7, 8, 9], [10, 11, 12]])); declare(matrixint 2,3, r); (r = (m1 + m2)); print(r)
+Type: Statement
+Result: VUnit
+
+TC13:
+6., 8.
+10., 12.
+Input: matrix(float, 2, 2) m1 := 2, 2 
+ [[1.0, 2.0], [3.0, 4.0]]; matrix(float, 2, 2) m2 := 2, 2 
+ [[5.0, 6.0], [7.0, 8.0]]; matrix(float, 2, 2) r := m1 + m2; print(r);
+AST: declare(matrixfloat 2,2, m1); (m1 = matrix(2,2,[[1.0, 2.0], [3.0, 4.0]])); declare(matrixfloat 2,2, m2); (m2 = matrix(2,2,[[5.0, 6.0], [7.0, 8.0]])); declare(matrixfloat 2,2, r); (r = (m1 + m2)); print(r)
+Type: Statement
+Result: VUnit
+
+TC14:
+8., 10., 12.
+14., 16., 18.
+Input: matrix(float, 2, 3) m1 := 2, 3 
+ [[1.0, 2.0, 3.0], [4.0, 5.0, 6.0]]; matrix(float, 2, 3) m2 := 2, 3 
+ [[7.0, 8.0, 9.0], [10.0, 11.0, 12.0]]; matrix(float, 2, 3) r := m1 + m2; print(r);
+AST: declare(matrixfloat 2,3, m1); (m1 = matrix(2,3,[[1.0, 2.0, 3.0], [4.0, 5.0, 6.0]])); declare(matrixfloat 2,3, m2); (m2 = matrix(2,3,[[7.0, 8.0, 9.0], [10.0, 11.0, 12.0]])); declare(matrixfloat 2,3, r); (r = (m1 + m2)); print(r)
+Type: Statement
+Result: VUnit
+
+TC15:
+1, 3
+2, 4
+Input: matrix(int, 2, 2) m := 2, 2 
+ [[1, 2], [3, 4]]; matrix(int, 2, 2) r := transpose(m); print(r);
+AST: declare(matrixint 2,2, m); (m = matrix(2,2,[[1, 2], [3, 4]])); declare(matrixint 2,2, r); (r = transpose(m)); print(r)
+Type: Statement
+Result: VUnit
+
+TC16:
+1, 4
+2, 5
+3, 6
+Input: matrix(int, 2, 3) m := 2, 3 
+ [[1, 2, 3], [4, 5, 6]]; matrix(int, 3, 2) r := transpose(m); print(r);
+AST: declare(matrixint 2,3, m); (m = matrix(2,3,[[1, 2, 3], [4, 5, 6]])); declare(matrixint 3,2, r); (r = transpose(m)); print(r)
+Type: Statement
+Result: VUnit
+
+TC17:
+1., 3.
+2., 4.
+Input: matrix(float, 2, 2) m := 2, 2 
+ [[1.0, 2.0], [3.0, 4.0]]; matrix(float, 2, 2) r := transpose(m); print(r);
+AST: declare(matrixfloat 2,2, m); (m = matrix(2,2,[[1.0, 2.0], [3.0, 4.0]])); declare(matrixfloat 2,2, r); (r = transpose(m)); print(r)
+Type: Statement
+Result: VUnit
+
+TC18:
+1., 4.
+2., 5.
+3., 6.
+Input: matrix(float, 2, 3) m := 2, 3 
+ [[1.0, 2.0, 3.0], [4.0, 5.0, 6.0]]; matrix(float, 3, 2) r := transpose(m); print(r);
+AST: declare(matrixfloat 2,3, m); (m = matrix(2,3,[[1.0, 2.0, 3.0], [4.0, 5.0, 6.0]])); declare(matrixfloat 3,2, r); (r = transpose(m)); print(r)
+Type: Statement
+Result: VUnit
+
+TC19:
+-2
+Input: matrix(int, 2, 2) m := 2, 2 
+ [[1, 2], [3, 4]]; int d := det(m); print(d);
+AST: declare(matrixint 2,2, m); (m = matrix(2,2,[[1, 2], [3, 4]])); declare(int, d); (d = det(m)); print(d)
+Type: Statement
+Result: VUnit
+
+TC20:
+0
+Input: matrix(int, 3, 3) m := 3, 3 
+ [[1, 2, 3], [4, 5, 6], [7, 8, 9]]; int d := det(m); print(d);
+AST: declare(matrixint 3,3, m); (m = matrix(3,3,[[1, 2, 3], [4, 5, 6], [7, 8, 9]])); declare(int, d); (d = det(m)); print(d)
+Type: Statement
+Result: VUnit
+
+TC21:
+-2.
+Input: matrix(float, 2, 2) m := 2, 2 
+ [[1.0, 2.0], [3.0, 4.0]]; float d := det(m); print(d);
+AST: declare(matrixfloat 2,2, m); (m = matrix(2,2,[[1.0, 2.0], [3.0, 4.0]])); declare(float, d); (d = det(m)); print(d)
+Type: Statement
+Result: VUnit
+
+TC22:
+0.
+Input: matrix(float, 3, 3) m := 3, 3 
+ [[1.0, 2.0, 3.0], [4.0, 5.0, 6.0], [7.0, 8.0, 9.0]]; float d := det(m); print(d);
+AST: declare(matrixfloat 3,3, m); (m = matrix(3,3,[[1.0, 2.0, 3.0], [4.0, 5.0, 6.0], [7.0, 8.0, 9.0]])); declare(float, d); (d = det(m)); print(d)
+Type: Statement
+Result: VUnit
+
+TC23:
+Type Error: Wrong type: Determinant of non-square matrix: m
+
+TC24:
+-2
+Input: matrix(int, 2, 2) m := 2, 2 
+ [[1, 2], [3, 4]]; 
+    if (det(m) != 0) { 
+      int d := det(m); print(d);  
+    } else { 
+      print(999); 
+    }
+AST: declare(matrixint 2,2, m); (m = matrix(2,2,[[1, 2], [3, 4]])); if((det(m) != 0)) declare(int, d); (d = det(m)); print(d) else print(999)
+Type: Statement
+Result: VUnit
+
+TC25:
+19, 22
+43, 50
+Input: matrix(int, 2, 2) m := 2, 2 
+ [[1, 2], [3, 4]]; matrix(int, 2, 2) n := 2, 2 
+ [[5, 6], [7, 8]]; matrix(int, 2, 2) r := m . n; print(r);
+AST: declare(matrixint 2,2, m); (m = matrix(2,2,[[1, 2], [3, 4]])); declare(matrixint 2,2, n); (n = matrix(2,2,[[5, 6], [7, 8]])); declare(matrixint 2,2, r); (r = (m . n)); print(r)
+Type: Statement
+Result: VUnit
+
+TC26:
+Type Error: Wrong type: Matrix mult of incompatible matrices
+
+TC27:
+Type Error: Wrong type: Matrix mult of incompatible matrices
+
+TC28:
+19, 22
+43, 50
+Input: matrix(int, 2, 2) m := 2, 2 
+ [[1, 2], [3, 4]]; matrix(int, 2, 2) n := 2, 2 
+ [[5, 6], [7, 8]]; matrix(int, 2, 2) r := m . n; print(r);
+AST: declare(matrixint 2,2, m); (m = matrix(2,2,[[1, 2], [3, 4]])); declare(matrixint 2,2, n); (n = matrix(2,2,[[5, 6], [7, 8]])); declare(matrixint 2,2, r); (r = (m . n)); print(r)
+Type: Statement
+Result: VUnit
+
+TC29:
+19., 22.
+43., 50.
+Input: matrix(float, 2, 2) m := 2, 2 
+ [[1.0, 2.0], [3.0, 4.0]]; matrix(float, 2, 2) n := 2, 2 
+ [[5.0, 6.0], [7.0, 8.0]]; matrix(float, 2, 2) r := m . n; print(r);
+AST: declare(matrixfloat 2,2, m); (m = matrix(2,2,[[1.0, 2.0], [3.0, 4.0]])); declare(matrixfloat 2,2, n); (n = matrix(2,2,[[5.0, 6.0], [7.0, 8.0]])); declare(matrixfloat 2,2, r); (r = (m . n)); print(r)
+Type: Statement
+Result: VUnit
+
+TC30:
+3, 3, 3
+3, 3, 3
+3, 3, 3
+Input: matrix(int, 3,3) m :=3 ,3 
+ [[1 ,1 ,1],[1 ,1 ,1],[1 ,1 ,1]]; matrix(int ,3 ,3) n :=3 ,3 
+ [[1 ,1 ,1],[1 ,1 ,1],[1 ,1 ,1]]; matrix(int ,3 ,3) r :=m . n ; print(r);
+AST: declare(matrixint 3,3, m); (m = matrix(3,3,[[1 ,1 ,1],[1 ,1 ,1],[1 ,1 ,1]])); declare(matrixint 3,3, n); (n = matrix(3,3,[[1 ,1 ,1],[1 ,1 ,1],[1 ,1 ,1]])); declare(matrixint 3,3, r); (r = (m . n)); print(r)
+Type: Statement
+Result: VUnit
+
+TC31:
+Error: Wrong type for expression: (m . n)
+
+TC32:
+Type Error: Wrong type: Matrix mult of incompatible matrices
+
+TC33:
+32
+Input: vector(int, 3) v1 := 3 
+ [1, 2, 3]; vector(int, 3) v2 := 3 
+ [4, 5, 6]; int r := v1 . v2; print(r);
+AST: declare(vectorint 3, v1); (v1 = vector(3, [1, 2, 3])); declare(vectorint 3, v2); (v2 = vector(3, [4, 5, 6])); declare(int, r); (r = (v1 . v2)); print(r)
+Type: Statement
+Result: VUnit
+
+TC34:
+32.
+Input: vector(float, 3) v1 := 3 
+ [1.0, 2.0, 3.0]; vector(float, 3) v2 := 3 
+ [4.0, 5.0, 6.0]; float r := v1 . v2; print(r);
+AST: declare(vectorfloat 3, v1); (v1 = vector(3, [1.0, 2.0, 3.0])); declare(vectorfloat 3, v2); (v2 = vector(3, [4.0, 5.0, 6.0])); declare(float, r); (r = (v1 . v2)); print(r)
+Type: Statement
+Result: VUnit
+
+TC35:
+40, 46
+Input: vector(int, 3) v := 3 
+ [1, 2, 3]; matrix(int, 3, 2) m := 3, 2 
+ [[4, 5], [6, 7], [8, 9]]; vector(int, 2) r := v . m; print(r);
+AST: declare(vectorint 3, v); (v = vector(3, [1, 2, 3])); declare(matrixint 3,2, m); (m = matrix(3,2,[[4, 5], [6, 7], [8, 9]])); declare(vectorint 2, r); (r = (v . m)); print(r)
+Type: Statement
+Result: VUnit
+
+TC36:
+40., 46.
+Input: vector(float, 3) v := 3 
+ [1.0, 2.0, 3.0]; matrix(float, 3, 2) m := 3, 2 
+ [[4.0, 5.0], [6.0, 7.0], [8.0, 9.0]]; vector(float, 2) r := v . m; print(r);
+AST: declare(vectorfloat 3, v); (v = vector(3, [1.0, 2.0, 3.0])); declare(matrixfloat 3,2, m); (m = matrix(3,2,[[4.0, 5.0], [6.0, 7.0], [8.0, 9.0]])); declare(vectorfloat 2, r); (r = (v . m)); print(r)
+Type: Statement
+Result: VUnit
+
+TC37:
+50, 122
+Input: matrix(int, 2, 3) m := 2, 3 
+ [[1, 2, 3], [4, 5, 6]]; vector(int, 3) v := 3 
+ [7, 8, 9]; vector(int, 2) r := m . v; print(r);
+AST: declare(matrixint 2,3, m); (m = matrix(2,3,[[1, 2, 3], [4, 5, 6]])); declare(vectorint 3, v); (v = vector(3, [7, 8, 9])); declare(vectorint 2, r); (r = (m . v)); print(r)
+Type: Statement
+Result: VUnit
+
+TC38:
+50., 122.
+Input: matrix(float, 2, 3) m := 2, 3 
+ [[1.0, 2.0, 3.0], [4.0, 5.0, 6.0]]; vector(float, 3) v := 3 
+ [7.0, 8.0, 9.0]; vector(float, 2) r := m . v; print(r);
+AST: declare(matrixfloat 2,3, m); (m = matrix(2,3,[[1.0, 2.0, 3.0], [4.0, 5.0, 6.0]])); declare(vectorfloat 3, v); (v = vector(3, [7.0, 8.0, 9.0])); declare(vectorfloat 2, r); (r = (m . v)); print(r)
+Type: Statement
+Result: VUnit
+
+TC39:
+0.6, -0.7
+-0.2, 0.4
+Input: matrix(float, 2, 2) A := 2, 2 
+ [[4.0, 7.0], [2.0, 6.0]]; matrix(float, 2, 2) B := inv(A); print(B);
+AST: declare(matrixfloat 2,2, A); (A = matrix(2,2,[[4.0, 7.0], [2.0, 6.0]])); declare(matrixfloat 2,2, B); (B = inv(A)); print(B)
+Type: Statement
+Result: VUnit
+
+TC40:
+-24, 20, -5
+18, -15, 4
+5, -4, 1
+Input: matrix(int, 3, 3) A := 3, 3 
+ [[1, 2, 3], [0, 1, 4], [5, 6, 0]]; matrix(int, 3, 3) B := inv(A); print(B);
+AST: declare(matrixint 3,3, A); (A = matrix(3,3,[[1, 2, 3], [0, 1, 4], [5, 6, 0]])); declare(matrixint 3,3, B); (B = inv(A)); print(B)
+Type: Statement
+Result: VUnit
+
+TC41:
+Type Error: Wrong type: Inverse of non-square matrix: A
+
+TC42:
+1, -1
+Input: matrix(int, 2, 2) A := 2, 2 
+ [[2, 1], [5, 3]]; 
+    vector(int, 2) b := 2 
+ [1, 2]; 
+    matrix(int, 2, 2) A_inv := inv(A); 
+    vector(int, 2) x := A_inv . b; 
+    print(x);
+AST: declare(matrixint 2,2, A); (A = matrix(2,2,[[2, 1], [5, 3]])); declare(vectorint 2, b); (b = vector(2, [1, 2])); declare(matrixint 2,2, A_inv); (A_inv = inv(A)); declare(vectorint 2, x); (x = (A_inv . b)); print(x)
+Type: Statement
+Result: VUnit
+
+TC43:
+17, 39
+23, 34
+Input: matrix(int, 2, 2) A := 2, 2 
+ [[1, 2], [3, 4]]; vector(int, 2) b := 2 
+ [5, 6]; vector(int, 2) C := A.b; print(C); vector(int, 2) D := b.A; print(D);
+AST: declare(matrixint 2,2, A); (A = matrix(2,2,[[1, 2], [3, 4]])); declare(vectorint 2, b); (b = vector(2, [5, 6])); declare(vectorint 2, C); (C = (A . b)); print(C); declare(vectorint 2, D); (D = (b . A)); print(D)
+Type: Statement
+Result: VUnit
+
+TC44:
+1, 2
+Input: matrix(int, 2, 2) A := 2, 2 
+ [[2, 1], [5, 3]]; 
+    vector(int, 2) b := 2 
+ [4, 11];
+    matrix(int, 2, 2) A_inv := inv(A); 
+    vector(int, 2) x := A_inv . b; 
+    print(x);
+AST: declare(matrixint 2,2, A); (A = matrix(2,2,[[2, 1], [5, 3]])); declare(vectorint 2, b); (b = vector(2, [4, 11])); declare(matrixint 2,2, A_inv); (A_inv = inv(A)); declare(vectorint 2, x); (x = (A_inv . b)); print(x)
+Type: Statement
+Result: VUnit
+
+TC45:
+4, 6, 8
+Input: vector(int, 3) v0 := 3 
+ [1, 2, 3]; vector(int, 3) v1 := 3 
+ [4, 5, 6]; vector(int, 3) v2 := 3 
+ [-1, -1, -1]; vector(int, 3) vector_sum := 3 
+ [0, 0, 0]; vector_sum := vector_sum + v0; vector_sum := vector_sum + v1; vector_sum := vector_sum + v2; print(vector_sum);
+AST: declare(vectorint 3, v0); (v0 = vector(3, [1, 2, 3])); declare(vectorint 3, v1); (v1 = vector(3, [4, 5, 6])); declare(vectorint 3, v2); (v2 = vector(3, [-1, -1, -1])); declare(vectorint 3, vector_sum); (vector_sum = vector(3, [0, 0, 0])); (vector_sum = (vector_sum + v0)); (vector_sum = (vector_sum + v1)); (vector_sum = (vector_sum + v2)); print(vector_sum)
+Type: Statement
+Result: VUnit
+
+TC46:
+1, 2, 3
+8, 10, 12
+15, 18, 21
+15, 18, 21
+Input: vector(int, 3) vector_sum := 3 
+ [0, 0, 0]; vector(int, 3) V0 := 3 
+ [1, 2, 3]; vector(int, 3) V1 := 3 
+ [4, 5, 6]; vector(int, 3) V2 := 3 
+ [7, 8, 9]; int n := 3; for (int i := 0; i < n; i := i + 1;) { if (i = 0) { vector_sum := vector_sum + V0; print(vector_sum); } else { vector_sum := vector_sum + V2; print(vector_sum); } } print(vector_sum);
+AST: declare(vectorint 3, vector_sum); (vector_sum = vector(3, [0, 0, 0])); declare(vectorint 3, V0); (V0 = vector(3, [1, 2, 3])); declare(vectorint 3, V1); (V1 = vector(3, [4, 5, 6])); declare(vectorint 3, V2); (V2 = vector(3, [7, 8, 9])); declare(int, n); (n = 3); for(declare(int, i); (i = 0); (i < n); (i = (i + 1))) if((i == 0)) (vector_sum = (vector_sum + V0)); print(vector_sum) else (vector_sum = (vector_sum + V2)); print(vector_sum); print(vector_sum)
+Type: Statement
+Result: VUnit
+
+TC47:
+35, 40, 45
+Input: int n := 5; vector(int, 3) vector_sum := 3 
+ [0, 0, 0]; matrix(int, 5, 3) V := 5, 3 
+ [[1, 2, 3], [4, 5, 6], [7, 8, 9], [10, 11, 12], [13, 14, 15]]; for (int i := 0; i < n; i := i + 1;) { vector_sum := vector_sum + V[i]; } print(vector_sum);
+AST: declare(int, n); (n = 5); declare(vectorint 3, vector_sum); (vector_sum = vector(3, [0, 0, 0])); declare(matrixint 5,3, V); (V = matrix(5,3,[[1, 2, 3], [4, 5, 6], [7, 8, 9], [10, 11, 12], [13, 14, 15]])); for(declare(int, i); (i = 0); (i < n); (i = (i + 1))) (vector_sum = (vector_sum + V[i])); print(vector_sum)
+Type: Statement
+Result: VUnit
+
+TC48:
+5.
+Input: matrix(int, 2, 2) A := 2, 2 
+ [[3, 4], [0, 0]]; int sum_of_squares := 0; for (int i := 0; i < 2; i := i + 1;) { for (int j := 0; j < 2; j := j + 1;) { sum_of_squares := sum_of_squares + A[i, j] * A[i, j]; } } float magnitude_of_matrix := pow(sum_of_squares, 0.5); print(magnitude_of_matrix);
+AST: declare(matrixint 2,2, A); (A = matrix(2,2,[[3, 4], [0, 0]])); declare(int, sum_of_squares); (sum_of_squares = 0); for(declare(int, i); (i = 0); (i < 2); (i = (i + 1))) for(declare(int, j); (j = 0); (j < 2); (j = (j + 1))) (sum_of_squares = (sum_of_squares + (A[i][j] * A[i][j]))); declare(float, magnitude_of_matrix); (magnitude_of_matrix = (sum_of_squares ^ 0.5)); print(magnitude_of_matrix)
+Type: Statement
+Result: VUnit
+
+TC49:
+0.0001, 0.
+0., 0.0001
+Input: matrix(float, 2, 2) A := 2, 2 
+ [[0.01, 0.0],[0.0, 0.01]]; float threshold := 1e-6; float norm_diff := det(A); while (norm_diff > threshold) { A := A.A; norm_diff := det(A) - threshold; } print(A);
+AST: declare(matrixfloat 2,2, A); (A = matrix(2,2,[[0.01, 0.0],[0.0, 0.01]])); declare(float, threshold); (threshold = 1e-06); declare(float, norm_diff); (norm_diff = det(A)); while((norm_diff > threshold)) (A = (A . A)); (norm_diff = (det(A) - threshold)); print(A)
+Type: Statement
+Result: VUnit
+
+TC50:
+1, 4, 3
+Input: vector(int, 3) v := 3 
+ [1,2,3]; v[1] := 4; print(v);
+AST: declare(vectorint 3, v); (v = vector(3, [1,2,3])); (v[1] = 4); print(v)
+Type: Statement
+Result: VUnit
+
+TC51:
+2
+1, 5
+3, 4
+Input: matrix(int, 2, 2) m := 2, 2 
+ [[1, 2], [3, 4]]; int x := m[0, 1]; print(x); m[0, 1] := 5; print(m);
+AST: declare(matrixint 2,2, m); (m = matrix(2,2,[[1, 2], [3, 4]])); declare(int, x); (x = m[0][1]); print(x); (m[0][1] = 5); print(m)
+Type: Statement
+Result: VUnit
+
+TC52:
+1000
+1, 2, 3
+Input: int x := input(4.txt); vector(int, 3) v := input(5.txt); print(x); print(v);
+AST: declare(int, x); (x = input(4.txt)); declare(vectorint 3, v); (v = input(5.txt)); print(x); print(v)
+Type: Statement
+Result: VUnit
+
+TC53:
+1, 2
+3, 4
+Input: matrix(int, 2, 2) m := input(6.txt); print(m);
+AST: declare(matrixint 2,2, m); (m = input(6.txt)); print(m)
+Type: Statement
+Result: VUnit
+
+TC54:
+100
+Input: int x := input(1.txt); print(x);
+AST: declare(int, x); (x = input(1.txt)); print(x)
+Type: Statement
+Result: VUnit
+
+TC55:
+0
+Input: int z' := 0; print(z');
+AST: declare(int, z'); (z' = 0); print(z')
+Type: Statement
+Result: VUnit
+
+TC56:
+0
+Input: int x; print(x);
+AST: declare(int, x); print(x)
+Type: Statement
+Result: VUnit
+
+TC57:
+1, 3
+7, 9
+Input: matrix(int, 3, 3) m := 3, 3 
+ [[1, 2, 3], [4, 5, 6], [7, 8, 9]]; int x:=1; int y := 1; matrix(int, 2, 2) a := minor(m, x, y); print(a);
+AST: declare(matrixint 3,3, m); (m = matrix(3,3,[[1, 2, 3], [4, 5, 6], [7, 8, 9]])); declare(int, x); (x = 1); declare(int, y); (y = 1); declare(matrixint 2,2, a); (a = minor(m, x, y)); print(a)
+Type: Statement
+Result: VUnit
+
+TC58:
+1, 2
+Input: int x:=input(3.txt); vector(int, 2) v := 2 
+ [1,2]; v[x] := 4; print(v);
+AST: declare(int, x); (x = input(3.txt)); declare(vectorint 2, v); (v = vector(2, [1,2])); (v[x] = 4); print(v)
+Type: Statement
+Result: VUnit
+
+TC59:
+0.6, -0.7
+-0.2, 0.4
+-0.8, 0.6
+Input: matrix(float,2,2) A := 2,2
+[[4.0, 7.0], [2.0, 6.0]]; vector(float,2) b := 2
+[1.0, 2.0]; float detA := det(A); if (detA != 0.0) { matrix(float,2, 2) A_inverse := inv(A); vector(float,2) x := A_inverse . b; print(A_inverse); print(x); }
+AST: declare(matrixfloat 2,2, A); (A = matrix(2,2,[[4.0, 7.0], [2.0, 6.0]])); declare(vectorfloat 2, b); (b = vector(2, [1.0, 2.0])); declare(float, detA); (detA = det(A)); if((detA != 0.)) declare(matrixfloat 2,2, A_inverse); (A_inverse = inv(A)); declare(vectorfloat 2, x); (x = (A_inverse . b)); print(A_inverse); print(x)
+Type: Statement
+Result: VUnit
+
+TC60:
+5.37228132327
+-0.372281323269
+Input: matrix(int, 2, 2) A := 2, 2 
+ [[1, 2], [3, 4]]; int trace := 5; int d := det(A); int D := trace * trace - 4 * d; if (D >= 0) { float eigenvalue1 := (trace + pow(D, 0.50 )) / 2.0; float eigenvalue2 := (trace - pow(D, 0.50)) / 2.0; print(eigenvalue1); print(eigenvalue2); } else { print(D); }
+AST: declare(matrixint 2,2, A); (A = matrix(2,2,[[1, 2], [3, 4]])); declare(int, trace); (trace = 5); declare(int, d); (d = det(A)); declare(int, D); (D = ((trace * trace) - (4 * d))); if((D >= 0)) declare(float, eigenvalue1); (eigenvalue1 = ((trace + (D ^ 0.5)) / 2.)); declare(float, eigenvalue2); (eigenvalue2 = ((trace - (D ^ 0.5)) / 2.)); print(eigenvalue1); print(eigenvalue2) else print(D)
+Type: Statement
+Result: VUnit
+
+TC61:
+0.6, -0.7
+-0.2, 0.4
+Input: matrix(float, 2, 2) A := 2, 2 
+ [[4.0, 7.0], [2.0, 6.0]]; matrix(float, 2, 2) cofactor_matrix; matrix(float, 2, 2) adjoint; matrix(float, 2, 2) inverse; if (det(A) != 0.0) { cofactor_matrix := 2, 2 
+ [[0.0, 0.0], [0.0, 0.0]]; for (int i := 0; i < 2; i := i + 1;) { for (int j := 0; j < 2; j := j + 1;) { matrix(float, 1, 1) minor_ij; minor_ij := minor(A,i,j); cofactor_matrix[i, j] := pow(-1, (i + j)) * det(minor_ij); } } adjoint := transpose(cofactor_matrix); inverse := (1.0 / det(A)) * adjoint; print(inverse); } else { print(MatrixNotInvertible); }
+AST: declare(matrixfloat 2,2, A); (A = matrix(2,2,[[4.0, 7.0], [2.0, 6.0]])); declare(matrixfloat 2,2, cofactor_matrix); declare(matrixfloat 2,2, adjoint); declare(matrixfloat 2,2, inverse); if((det(A) != 0.)) (cofactor_matrix = matrix(2,2,[[0.0, 0.0], [0.0, 0.0]])); for(declare(int, i); (i = 0); (i < 2); (i = (i + 1))) for(declare(int, j); (j = 0); (j < 2); (j = (j + 1))) declare(matrixfloat 1,1, minor_ij); (minor_ij = minor(A, i, j)); (cofactor_matrix[i][j] = (((-1) ^ (i + j)) * det(minor_ij))); (adjoint = transpose(cofactor_matrix)); (inverse = ((1. / det(A)) * adjoint)); print(inverse) else print(MatrixNotInvertible)
+Type: Statement
+Result: VUnit
+
+TC62:
+Runtime Error: Type error in addition: (v + b)
+
+TC63:
+0, 0
+Input: matrix(int, 2, 3) m := 2, 3 
+ [[1, 2, 3], [4, 5, 6]]; vector(int, 3) v := 3 
+ [0, 0, 0]; vector(int, 2) r := m . v; print(r);
+AST: declare(matrixint 2,3, m); (m = matrix(2,3,[[1, 2, 3], [4, 5, 6]])); declare(vectorint 3, v); (v = vector(3, [0, 0, 0])); declare(vectorint 2, r); (r = (m . v)); print(r)
+Type: Statement
+Result: VUnit
+
+TC64:
+Runtime Error: Matrix is not invertible (det = 0)
+
+TC65:
+10
+Input: matrix(int, 2, 2) m := 2, 2 
+ [[1, 2], [3, 4]]; int sum := 0; for (int i := 0; i < 2; i := i + 1;) { for (int j := 0; j < 2; j := j + 1;) { sum := sum + m[i, j]; } } print(sum);
+AST: declare(matrixint 2,2, m); (m = matrix(2,2,[[1, 2], [3, 4]])); declare(int, sum); (sum = 0); for(declare(int, i); (i = 0); (i < 2); (i = (i + 1))) for(declare(int, j); (j = 0); (j < 2); (j = (j + 1))) (sum = (sum + m[i][j])); print(sum)
+Type: Statement
+Result: VUnit
+
+TC66:
+-3, 3, -3
+Input: vector(int, 3) v1 := 3 
+ [1, -2, 3]; vector(int, 3) v2 := 3 
+ [-4, 5, -6]; vector(int, 3) r := v1 + v2; print(r);
+AST: declare(vectorint 3, v1); (v1 = vector(3, [1, -2, 3])); declare(vectorint 3, v2); (v2 = vector(3, [-4, 5, -6])); declare(vectorint 3, r); (r = (v1 + v2)); print(r)
+Type: Statement
+Result: VUnit
+
+TC67:
+3, 6
+9, 12
+Input: matrix(int, 2, 2) m := 2, 2 
+ [[1, 2], [3, 4]]; matrix(int, 2, 2) r := 3 * m; print(r);
+AST: declare(matrixint 2,2, m); (m = matrix(2,2,[[1, 2], [3, 4]])); declare(matrixint 2,2, r); (r = (3 * m)); print(r)
+Type: Statement
+Result: VUnit
+
+TC68:
+Error: Wrong type for expression: (v + m)
+
+TC69:
+0
+Input: matrix(int, 2, 2) m := 2, 2 
+ [[1, 2], [3, 4]]; int d := det(m); if (d > 0) { print(1); }  else { print(0); }
+AST: declare(matrixint 2,2, m); (m = matrix(2,2,[[1, 2], [3, 4]])); declare(int, d); (d = det(m)); if((d > 0)) print(1) else print(0)
+Type: Statement
+Result: VUnit
+
+TC70:
+3.2e-07
+Input: vector(float, 3) v1 := 3 
+ [0.0001, 0.0002, 0.0003]; vector(float, 3) v2 := 3 
+ [0.0004, 0.0005, 0.0006]; float r := v1 . v2; print(r);
+AST: declare(vectorfloat 3, v1); (v1 = vector(3, [0.0001, 0.0002, 0.0003])); declare(vectorfloat 3, v2); (v2 = vector(3, [0.0004, 0.0005, 0.0006])); declare(float, r); (r = (v1 . v2)); print(r)
+Type: Statement
+Result: VUnit
+
+TC71:
+Runtime Error: Index out of bounds in matrix: m
+
+TC72:
+1, 2, 3
+Input: vector(int, 3) v := 3 
+ [1, 2, 3]; int x := 0; for (x := 5; x < 3; x := x + 1;) { v[0] := 10; } print(v);
+AST: declare(vectorint 3, v); (v = vector(3, [1, 2, 3])); declare(int, x); (x = 0); for((x = 5); (x < 3); (x = (x + 1))) (v[0] = 10); print(v)
+Type: Statement
+Result: VUnit
+
+TC1:
+1, 2, 3
+Input: vector(int, 3) v := 3 
+ [1, 2, 3]; print(v);
+AST: declare(vectorint 3, v); (v = vector(3, [1, 2, 3])); print(v)
+Type: Statement
+Result: VUnit
+
+TC2:
+1, 2
+3, 4
+Input: matrix(int, 2, 2) m := 2, 2 
+ [[1, 2], [3, 4]]; print(m);
+AST: declare(matrixint 2,2, m); (m = matrix(2,2,[[1, 2], [3, 4]])); print(m)
+Type: Statement
+Result: VUnit
+
+TC3:
+8
+Input: int a := 5 + 3; print(a);
+AST: declare(int, a); (a = (5 + 3)); print(a)
+Type: Statement
+Result: VUnit
+
+TC4:
+6.
+Input: float b := 2.0 * 3.0; print(b);
+AST: declare(float, b); (b = (2. * 3.)); print(b)
+Type: Statement
+Result: VUnit
+
+TC5:
+32.
+Input: vector(float, 3) v1 := 3 
+ [1.0, 2.0, 3.0]; vector(float, 3) v2 := 3 
+ [4.0, 5.0, 6.0]; float d := v1 . v2; print(d);
+AST: declare(vectorfloat 3, v1); (v1 = vector(3, [1.0, 2.0, 3.0])); declare(vectorfloat 3, v2); (v2 = vector(3, [4.0, 5.0, 6.0])); declare(float, d); (d = (v1 . v2)); print(d)
+Type: Statement
+Result: VUnit
+
+TC6:
+0
+1
+2
+3
+Input: int x := 0; for (x := 0; x < 3; x := x + 1;) { print(x); } print(x);
+AST: declare(int, x); (x = 0); for((x = 0); (x < 3); (x = (x + 1))) print(x); print(x)
+Type: Statement
+Result: VUnit
+
+TC7:
+0
+Input: int x := 5; if (x < 3) { print(x); } else { print(0); }
+AST: declare(int, x); (x = 5); if((x < 3)) print(x) else print(0)
+Type: Statement
+Result: VUnit
+
+TC8:
+-2
+Input: matrix(int, 3, 3) m := 3, 3 
+ [[2, 5, 3],[1, 2, 1],[1, 3, 4]]; int det_m := det(m); print(det_m);
+AST: declare(matrixint 3,3, m); (m = matrix(3,3,[[2, 5, 3],[1, 2, 1],[1, 3, 4]])); declare(int, det_m); (det_m = det(m)); print(det_m)
+Type: Statement
+Result: VUnit
+
+TC9:
+19, 22
+43, 50
+Input: matrix (int, 2, 2) m := 2, 2 
+ [[1, 2], [3, 4]]; matrix(int, 2, 2) n := 2, 2 
+ [[5, 6], [7, 8]]; matrix(int, 2, 2) r := m . n; print(r);
+AST: declare(matrixint 2,2, m); (m = matrix(2,2,[[1, 2], [3, 4]])); declare(matrixint 2,2, n); (n = matrix(2,2,[[5, 6], [7, 8]])); declare(matrixint 2,2, r); (r = (m . n)); print(r)
+Type: Statement
+Result: VUnit
+
+TC10:
+1, 3
+2, 4
+Input: matrix (int, 2, 2) m := 2, 2 
+ [[1, 2], [3, 4]]; matrix(int, 2, 2) n := transpose(m); print(n);
+AST: declare(matrixint 2,2, m); (m = matrix(2,2,[[1, 2], [3, 4]])); declare(matrixint 2,2, n); (n = transpose(m)); print(n)
+Type: Statement
+Result: VUnit
+
+TC11:
+6, 8
+10, 12
+Input: matrix(int, 2, 2) m1 := 2, 2 
+ [[1, 2], [3, 4]]; matrix(int, 2, 2) m2 := 2, 2 
+ [[5, 6], [7, 8]]; matrix(int, 2, 2) r := m1 + m2; print(r);
+AST: declare(matrixint 2,2, m1); (m1 = matrix(2,2,[[1, 2], [3, 4]])); declare(matrixint 2,2, m2); (m2 = matrix(2,2,[[5, 6], [7, 8]])); declare(matrixint 2,2, r); (r = (m1 + m2)); print(r)
+Type: Statement
+Result: VUnit
+
+TC12:
+8, 10, 12
+14, 16, 18
+Input: matrix(int, 2, 3) m1 := 2, 3 
+ [[1, 2, 3], [4, 5, 6]]; matrix(int, 2, 3) m2 := 2, 3 
+ [[7, 8, 9], [10, 11, 12]]; matrix(int, 2, 3) r := m1 + m2; print(r);
+AST: declare(matrixint 2,3, m1); (m1 = matrix(2,3,[[1, 2, 3], [4, 5, 6]])); declare(matrixint 2,3, m2); (m2 = matrix(2,3,[[7, 8, 9], [10, 11, 12]])); declare(matrixint 2,3, r); (r = (m1 + m2)); print(r)
+Type: Statement
+Result: VUnit
+
+TC13:
+6., 8.
+10., 12.
+Input: matrix(float, 2, 2) m1 := 2, 2 
+ [[1.0, 2.0], [3.0, 4.0]]; matrix(float, 2, 2) m2 := 2, 2 
+ [[5.0, 6.0], [7.0, 8.0]]; matrix(float, 2, 2) r := m1 + m2; print(r);
+AST: declare(matrixfloat 2,2, m1); (m1 = matrix(2,2,[[1.0, 2.0], [3.0, 4.0]])); declare(matrixfloat 2,2, m2); (m2 = matrix(2,2,[[5.0, 6.0], [7.0, 8.0]])); declare(matrixfloat 2,2, r); (r = (m1 + m2)); print(r)
+Type: Statement
+Result: VUnit
+
+TC14:
+8., 10., 12.
+14., 16., 18.
+Input: matrix(float, 2, 3) m1 := 2, 3 
+ [[1.0, 2.0, 3.0], [4.0, 5.0, 6.0]]; matrix(float, 2, 3) m2 := 2, 3 
+ [[7.0, 8.0, 9.0], [10.0, 11.0, 12.0]]; matrix(float, 2, 3) r := m1 + m2; print(r);
+AST: declare(matrixfloat 2,3, m1); (m1 = matrix(2,3,[[1.0, 2.0, 3.0], [4.0, 5.0, 6.0]])); declare(matrixfloat 2,3, m2); (m2 = matrix(2,3,[[7.0, 8.0, 9.0], [10.0, 11.0, 12.0]])); declare(matrixfloat 2,3, r); (r = (m1 + m2)); print(r)
+Type: Statement
+Result: VUnit
+
+TC15:
+1, 3
+2, 4
+Input: matrix(int, 2, 2) m := 2, 2 
+ [[1, 2], [3, 4]]; matrix(int, 2, 2) r := transpose(m); print(r);
+AST: declare(matrixint 2,2, m); (m = matrix(2,2,[[1, 2], [3, 4]])); declare(matrixint 2,2, r); (r = transpose(m)); print(r)
+Type: Statement
+Result: VUnit
+
+TC16:
+1, 4
+2, 5
+3, 6
+Input: matrix(int, 2, 3) m := 2, 3 
+ [[1, 2, 3], [4, 5, 6]]; matrix(int, 3, 2) r := transpose(m); print(r);
+AST: declare(matrixint 2,3, m); (m = matrix(2,3,[[1, 2, 3], [4, 5, 6]])); declare(matrixint 3,2, r); (r = transpose(m)); print(r)
+Type: Statement
+Result: VUnit
+
+TC17:
+1., 3.
+2., 4.
+Input: matrix(float, 2, 2) m := 2, 2 
+ [[1.0, 2.0], [3.0, 4.0]]; matrix(float, 2, 2) r := transpose(m); print(r);
+AST: declare(matrixfloat 2,2, m); (m = matrix(2,2,[[1.0, 2.0], [3.0, 4.0]])); declare(matrixfloat 2,2, r); (r = transpose(m)); print(r)
+Type: Statement
+Result: VUnit
+
+TC18:
+1., 4.
+2., 5.
+3., 6.
+Input: matrix(float, 2, 3) m := 2, 3 
+ [[1.0, 2.0, 3.0], [4.0, 5.0, 6.0]]; matrix(float, 3, 2) r := transpose(m); print(r);
+AST: declare(matrixfloat 2,3, m); (m = matrix(2,3,[[1.0, 2.0, 3.0], [4.0, 5.0, 6.0]])); declare(matrixfloat 3,2, r); (r = transpose(m)); print(r)
+Type: Statement
+Result: VUnit
+
+TC19:
+-2
+Input: matrix(int, 2, 2) m := 2, 2 
+ [[1, 2], [3, 4]]; int d := det(m); print(d);
+AST: declare(matrixint 2,2, m); (m = matrix(2,2,[[1, 2], [3, 4]])); declare(int, d); (d = det(m)); print(d)
+Type: Statement
+Result: VUnit
+
+TC20:
+0
+Input: matrix(int, 3, 3) m := 3, 3 
+ [[1, 2, 3], [4, 5, 6], [7, 8, 9]]; int d := det(m); print(d);
+AST: declare(matrixint 3,3, m); (m = matrix(3,3,[[1, 2, 3], [4, 5, 6], [7, 8, 9]])); declare(int, d); (d = det(m)); print(d)
+Type: Statement
+Result: VUnit
+
+TC21:
+-2.
+Input: matrix(float, 2, 2) m := 2, 2 
+ [[1.0, 2.0], [3.0, 4.0]]; float d := det(m); print(d);
+AST: declare(matrixfloat 2,2, m); (m = matrix(2,2,[[1.0, 2.0], [3.0, 4.0]])); declare(float, d); (d = det(m)); print(d)
+Type: Statement
+Result: VUnit
+
+TC22:
+0.
+Input: matrix(float, 3, 3) m := 3, 3 
+ [[1.0, 2.0, 3.0], [4.0, 5.0, 6.0], [7.0, 8.0, 9.0]]; float d := det(m); print(d);
+AST: declare(matrixfloat 3,3, m); (m = matrix(3,3,[[1.0, 2.0, 3.0], [4.0, 5.0, 6.0], [7.0, 8.0, 9.0]])); declare(float, d); (d = det(m)); print(d)
+Type: Statement
+Result: VUnit
+
+TC23:
+Type Error: Wrong type: Determinant of non-square matrix: m
+
+TC24:
+-2
+Input: matrix(int, 2, 2) m := 2, 2 
+ [[1, 2], [3, 4]]; 
+    if (det(m) != 0) { 
+      int d := det(m); print(d);  
+    } else { 
+      print(999); 
+    }
+AST: declare(matrixint 2,2, m); (m = matrix(2,2,[[1, 2], [3, 4]])); if((det(m) != 0)) declare(int, d); (d = det(m)); print(d) else print(999)
+Type: Statement
+Result: VUnit
+
+TC25:
+19, 22
+43, 50
+Input: matrix(int, 2, 2) m := 2, 2 
+ [[1, 2], [3, 4]]; matrix(int, 2, 2) n := 2, 2 
+ [[5, 6], [7, 8]]; matrix(int, 2, 2) r := m . n; print(r);
+AST: declare(matrixint 2,2, m); (m = matrix(2,2,[[1, 2], [3, 4]])); declare(matrixint 2,2, n); (n = matrix(2,2,[[5, 6], [7, 8]])); declare(matrixint 2,2, r); (r = (m . n)); print(r)
+Type: Statement
+Result: VUnit
+
+TC26:
+Type Error: Wrong type: Matrix mult of incompatible matrices
+
+TC27:
+Type Error: Wrong type: Matrix mult of incompatible matrices
+
+TC28:
+19, 22
+43, 50
+Input: matrix(int, 2, 2) m := 2, 2 
+ [[1, 2], [3, 4]]; matrix(int, 2, 2) n := 2, 2 
+ [[5, 6], [7, 8]]; matrix(int, 2, 2) r := m . n; print(r);
+AST: declare(matrixint 2,2, m); (m = matrix(2,2,[[1, 2], [3, 4]])); declare(matrixint 2,2, n); (n = matrix(2,2,[[5, 6], [7, 8]])); declare(matrixint 2,2, r); (r = (m . n)); print(r)
+Type: Statement
+Result: VUnit
+
+TC29:
+19., 22.
+43., 50.
+Input: matrix(float, 2, 2) m := 2, 2 
+ [[1.0, 2.0], [3.0, 4.0]]; matrix(float, 2, 2) n := 2, 2 
+ [[5.0, 6.0], [7.0, 8.0]]; matrix(float, 2, 2) r := m . n; print(r);
+AST: declare(matrixfloat 2,2, m); (m = matrix(2,2,[[1.0, 2.0], [3.0, 4.0]])); declare(matrixfloat 2,2, n); (n = matrix(2,2,[[5.0, 6.0], [7.0, 8.0]])); declare(matrixfloat 2,2, r); (r = (m . n)); print(r)
+Type: Statement
+Result: VUnit
+
+TC30:
+3, 3, 3
+3, 3, 3
+3, 3, 3
+Input: matrix(int, 3,3) m :=3 ,3 
+ [[1 ,1 ,1],[1 ,1 ,1],[1 ,1 ,1]]; matrix(int ,3 ,3) n :=3 ,3 
+ [[1 ,1 ,1],[1 ,1 ,1],[1 ,1 ,1]]; matrix(int ,3 ,3) r :=m . n ; print(r);
+AST: declare(matrixint 3,3, m); (m = matrix(3,3,[[1 ,1 ,1],[1 ,1 ,1],[1 ,1 ,1]])); declare(matrixint 3,3, n); (n = matrix(3,3,[[1 ,1 ,1],[1 ,1 ,1],[1 ,1 ,1]])); declare(matrixint 3,3, r); (r = (m . n)); print(r)
+Type: Statement
+Result: VUnit
+
+TC31:
+Error: Wrong type for expression: (m . n)
+
+TC32:
+Type Error: Wrong type: Matrix mult of incompatible matrices
+
+TC33:
+32
+Input: vector(int, 3) v1 := 3 
+ [1, 2, 3]; vector(int, 3) v2 := 3 
+ [4, 5, 6]; int r := v1 . v2; print(r);
+AST: declare(vectorint 3, v1); (v1 = vector(3, [1, 2, 3])); declare(vectorint 3, v2); (v2 = vector(3, [4, 5, 6])); declare(int, r); (r = (v1 . v2)); print(r)
+Type: Statement
+Result: VUnit
+
+TC34:
+32.
+Input: vector(float, 3) v1 := 3 
+ [1.0, 2.0, 3.0]; vector(float, 3) v2 := 3 
+ [4.0, 5.0, 6.0]; float r := v1 . v2; print(r);
+AST: declare(vectorfloat 3, v1); (v1 = vector(3, [1.0, 2.0, 3.0])); declare(vectorfloat 3, v2); (v2 = vector(3, [4.0, 5.0, 6.0])); declare(float, r); (r = (v1 . v2)); print(r)
+Type: Statement
+Result: VUnit
+
+TC35:
+40, 46
+Input: vector(int, 3) v := 3 
+ [1, 2, 3]; matrix(int, 3, 2) m := 3, 2 
+ [[4, 5], [6, 7], [8, 9]]; vector(int, 2) r := v . m; print(r);
+AST: declare(vectorint 3, v); (v = vector(3, [1, 2, 3])); declare(matrixint 3,2, m); (m = matrix(3,2,[[4, 5], [6, 7], [8, 9]])); declare(vectorint 2, r); (r = (v . m)); print(r)
+Type: Statement
+Result: VUnit
+
+TC36:
+40., 46.
+Input: vector(float, 3) v := 3 
+ [1.0, 2.0, 3.0]; matrix(float, 3, 2) m := 3, 2 
+ [[4.0, 5.0], [6.0, 7.0], [8.0, 9.0]]; vector(float, 2) r := v . m; print(r);
+AST: declare(vectorfloat 3, v); (v = vector(3, [1.0, 2.0, 3.0])); declare(matrixfloat 3,2, m); (m = matrix(3,2,[[4.0, 5.0], [6.0, 7.0], [8.0, 9.0]])); declare(vectorfloat 2, r); (r = (v . m)); print(r)
+Type: Statement
+Result: VUnit
+
+TC37:
+50, 122
+Input: matrix(int, 2, 3) m := 2, 3 
+ [[1, 2, 3], [4, 5, 6]]; vector(int, 3) v := 3 
+ [7, 8, 9]; vector(int, 2) r := m . v; print(r);
+AST: declare(matrixint 2,3, m); (m = matrix(2,3,[[1, 2, 3], [4, 5, 6]])); declare(vectorint 3, v); (v = vector(3, [7, 8, 9])); declare(vectorint 2, r); (r = (m . v)); print(r)
+Type: Statement
+Result: VUnit
+
+TC38:
+50., 122.
+Input: matrix(float, 2, 3) m := 2, 3 
+ [[1.0, 2.0, 3.0], [4.0, 5.0, 6.0]]; vector(float, 3) v := 3 
+ [7.0, 8.0, 9.0]; vector(float, 2) r := m . v; print(r);
+AST: declare(matrixfloat 2,3, m); (m = matrix(2,3,[[1.0, 2.0, 3.0], [4.0, 5.0, 6.0]])); declare(vectorfloat 3, v); (v = vector(3, [7.0, 8.0, 9.0])); declare(vectorfloat 2, r); (r = (m . v)); print(r)
+Type: Statement
+Result: VUnit
+
+TC39:
+0.6, -0.7
+-0.2, 0.4
+Input: matrix(float, 2, 2) A := 2, 2 
+ [[4.0, 7.0], [2.0, 6.0]]; matrix(float, 2, 2) B := inv(A); print(B);
+AST: declare(matrixfloat 2,2, A); (A = matrix(2,2,[[4.0, 7.0], [2.0, 6.0]])); declare(matrixfloat 2,2, B); (B = inv(A)); print(B)
+Type: Statement
+Result: VUnit
+
+TC40:
+-24, 20, -5
+18, -15, 4
+5, -4, 1
+Input: matrix(int, 3, 3) A := 3, 3 
+ [[1, 2, 3], [0, 1, 4], [5, 6, 0]]; matrix(int, 3, 3) B := inv(A); print(B);
+AST: declare(matrixint 3,3, A); (A = matrix(3,3,[[1, 2, 3], [0, 1, 4], [5, 6, 0]])); declare(matrixint 3,3, B); (B = inv(A)); print(B)
+Type: Statement
+Result: VUnit
+
+TC41:
+Type Error: Wrong type: Inverse of non-square matrix: A
+
+TC42:
+1, -1
+Input: matrix(int, 2, 2) A := 2, 2 
+ [[2, 1], [5, 3]]; 
+    vector(int, 2) b := 2 
+ [1, 2]; 
+    matrix(int, 2, 2) A_inv := inv(A); 
+    vector(int, 2) x := A_inv . b; 
+    print(x);
+AST: declare(matrixint 2,2, A); (A = matrix(2,2,[[2, 1], [5, 3]])); declare(vectorint 2, b); (b = vector(2, [1, 2])); declare(matrixint 2,2, A_inv); (A_inv = inv(A)); declare(vectorint 2, x); (x = (A_inv . b)); print(x)
+Type: Statement
+Result: VUnit
+
+TC43:
+17, 39
+23, 34
+Input: matrix(int, 2, 2) A := 2, 2 
+ [[1, 2], [3, 4]]; vector(int, 2) b := 2 
+ [5, 6]; vector(int, 2) C := A.b; print(C); vector(int, 2) D := b.A; print(D);
+AST: declare(matrixint 2,2, A); (A = matrix(2,2,[[1, 2], [3, 4]])); declare(vectorint 2, b); (b = vector(2, [5, 6])); declare(vectorint 2, C); (C = (A . b)); print(C); declare(vectorint 2, D); (D = (b . A)); print(D)
+Type: Statement
+Result: VUnit
+
+TC44:
+1, 2
+Input: matrix(int, 2, 2) A := 2, 2 
+ [[2, 1], [5, 3]]; 
+    vector(int, 2) b := 2 
+ [4, 11];
+    matrix(int, 2, 2) A_inv := inv(A); 
+    vector(int, 2) x := A_inv . b; 
+    print(x);
+AST: declare(matrixint 2,2, A); (A = matrix(2,2,[[2, 1], [5, 3]])); declare(vectorint 2, b); (b = vector(2, [4, 11])); declare(matrixint 2,2, A_inv); (A_inv = inv(A)); declare(vectorint 2, x); (x = (A_inv . b)); print(x)
+Type: Statement
+Result: VUnit
+
+TC45:
+4, 6, 8
+Input: vector(int, 3) v0 := 3 
+ [1, 2, 3]; vector(int, 3) v1 := 3 
+ [4, 5, 6]; vector(int, 3) v2 := 3 
+ [-1, -1, -1]; vector(int, 3) vector_sum := 3 
+ [0, 0, 0]; vector_sum := vector_sum + v0; vector_sum := vector_sum + v1; vector_sum := vector_sum + v2; print(vector_sum);
+AST: declare(vectorint 3, v0); (v0 = vector(3, [1, 2, 3])); declare(vectorint 3, v1); (v1 = vector(3, [4, 5, 6])); declare(vectorint 3, v2); (v2 = vector(3, [-1, -1, -1])); declare(vectorint 3, vector_sum); (vector_sum = vector(3, [0, 0, 0])); (vector_sum = (vector_sum + v0)); (vector_sum = (vector_sum + v1)); (vector_sum = (vector_sum + v2)); print(vector_sum)
+Type: Statement
+Result: VUnit
+
+TC46:
+1, 2, 3
+8, 10, 12
+15, 18, 21
+15, 18, 21
+Input: vector(int, 3) vector_sum := 3 
+ [0, 0, 0]; vector(int, 3) V0 := 3 
+ [1, 2, 3]; vector(int, 3) V1 := 3 
+ [4, 5, 6]; vector(int, 3) V2 := 3 
+ [7, 8, 9]; int n := 3; for (int i := 0; i < n; i := i + 1;) { if (i = 0) { vector_sum := vector_sum + V0; print(vector_sum); } else { vector_sum := vector_sum + V2; print(vector_sum); } } print(vector_sum);
+AST: declare(vectorint 3, vector_sum); (vector_sum = vector(3, [0, 0, 0])); declare(vectorint 3, V0); (V0 = vector(3, [1, 2, 3])); declare(vectorint 3, V1); (V1 = vector(3, [4, 5, 6])); declare(vectorint 3, V2); (V2 = vector(3, [7, 8, 9])); declare(int, n); (n = 3); for(declare(int, i); (i = 0); (i < n); (i = (i + 1))) if((i == 0)) (vector_sum = (vector_sum + V0)); print(vector_sum) else (vector_sum = (vector_sum + V2)); print(vector_sum); print(vector_sum)
+Type: Statement
+Result: VUnit
+
+TC47:
+35, 40, 45
+Input: int n := 5; vector(int, 3) vector_sum := 3 
+ [0, 0, 0]; matrix(int, 5, 3) V := 5, 3 
+ [[1, 2, 3], [4, 5, 6], [7, 8, 9], [10, 11, 12], [13, 14, 15]]; for (int i := 0; i < n; i := i + 1;) { vector_sum := vector_sum + V[i]; } print(vector_sum);
+AST: declare(int, n); (n = 5); declare(vectorint 3, vector_sum); (vector_sum = vector(3, [0, 0, 0])); declare(matrixint 5,3, V); (V = matrix(5,3,[[1, 2, 3], [4, 5, 6], [7, 8, 9], [10, 11, 12], [13, 14, 15]])); for(declare(int, i); (i = 0); (i < n); (i = (i + 1))) (vector_sum = (vector_sum + V[i])); print(vector_sum)
+Type: Statement
+Result: VUnit
+
+TC48:
+5.
+Input: matrix(int, 2, 2) A := 2, 2 
+ [[3, 4], [0, 0]]; int sum_of_squares := 0; for (int i := 0; i < 2; i := i + 1;) { for (int j := 0; j < 2; j := j + 1;) { sum_of_squares := sum_of_squares + A[i, j] * A[i, j]; } } float magnitude_of_matrix := pow(sum_of_squares, 0.5); print(magnitude_of_matrix);
+AST: declare(matrixint 2,2, A); (A = matrix(2,2,[[3, 4], [0, 0]])); declare(int, sum_of_squares); (sum_of_squares = 0); for(declare(int, i); (i = 0); (i < 2); (i = (i + 1))) for(declare(int, j); (j = 0); (j < 2); (j = (j + 1))) (sum_of_squares = (sum_of_squares + (A[i][j] * A[i][j]))); declare(float, magnitude_of_matrix); (magnitude_of_matrix = (sum_of_squares ^ 0.5)); print(magnitude_of_matrix)
+Type: Statement
+Result: VUnit
+
+TC49:
+0.0001, 0.
+0., 0.0001
+Input: matrix(float, 2, 2) A := 2, 2 
+ [[0.01, 0.0],[0.0, 0.01]]; float threshold := 1e-6; float norm_diff := det(A); while (norm_diff > threshold) { A := A.A; norm_diff := det(A) - threshold; } print(A);
+AST: declare(matrixfloat 2,2, A); (A = matrix(2,2,[[0.01, 0.0],[0.0, 0.01]])); declare(float, threshold); (threshold = 1e-06); declare(float, norm_diff); (norm_diff = det(A)); while((norm_diff > threshold)) (A = (A . A)); (norm_diff = (det(A) - threshold)); print(A)
+Type: Statement
+Result: VUnit
+
+TC50:
+1, 4, 3
+Input: vector(int, 3) v := 3 
+ [1,2,3]; v[1] := 4; print(v);
+AST: declare(vectorint 3, v); (v = vector(3, [1,2,3])); (v[1] = 4); print(v)
+Type: Statement
+Result: VUnit
+
+TC51:
+2
+1, 5
+3, 4
+Input: matrix(int, 2, 2) m := 2, 2 
+ [[1, 2], [3, 4]]; int x := m[0, 1]; print(x); m[0, 1] := 5; print(m);
+AST: declare(matrixint 2,2, m); (m = matrix(2,2,[[1, 2], [3, 4]])); declare(int, x); (x = m[0][1]); print(x); (m[0][1] = 5); print(m)
+Type: Statement
+Result: VUnit
+
+TC52:
+1000
+1, 2, 3
+Input: int x := input(4.txt); vector(int, 3) v := input(5.txt); print(x); print(v);
+AST: declare(int, x); (x = input(4.txt)); declare(vectorint 3, v); (v = input(5.txt)); print(x); print(v)
+Type: Statement
+Result: VUnit
+
+TC53:
+1, 2
+3, 4
+Input: matrix(int, 2, 2) m := input(6.txt); print(m);
+AST: declare(matrixint 2,2, m); (m = input(6.txt)); print(m)
+Type: Statement
+Result: VUnit
+
+TC54:
+100
+Input: int x := input(1.txt); print(x);
+AST: declare(int, x); (x = input(1.txt)); print(x)
+Type: Statement
+Result: VUnit
+
+TC55:
+0
+Input: int z' := 0; print(z');
+AST: declare(int, z'); (z' = 0); print(z')
+Type: Statement
+Result: VUnit
+
+TC56:
+0
+Input: int x; print(x);
+AST: declare(int, x); print(x)
+Type: Statement
+Result: VUnit
+
+TC57:
+1, 3
+7, 9
+Input: matrix(int, 3, 3) m := 3, 3 
+ [[1, 2, 3], [4, 5, 6], [7, 8, 9]]; int x:=1; int y := 1; matrix(int, 2, 2) a := minor(m, x, y); print(a);
+AST: declare(matrixint 3,3, m); (m = matrix(3,3,[[1, 2, 3], [4, 5, 6], [7, 8, 9]])); declare(int, x); (x = 1); declare(int, y); (y = 1); declare(matrixint 2,2, a); (a = minor(m, x, y)); print(a)
+Type: Statement
+Result: VUnit
+
+TC58:
+1, 2
+Input: int x:=input(3.txt); vector(int, 2) v := 2 
+ [1,2]; v[x] := 4; print(v);
+AST: declare(int, x); (x = input(3.txt)); declare(vectorint 2, v); (v = vector(2, [1,2])); (v[x] = 4); print(v)
+Type: Statement
+Result: VUnit
+
+TC59:
+0.6, -0.7
+-0.2, 0.4
+-0.8, 0.6
+Input: matrix(float,2,2) A := 2,2
+[[4.0, 7.0], [2.0, 6.0]]; vector(float,2) b := 2
+[1.0, 2.0]; float detA := det(A); if (detA != 0.0) { matrix(float,2, 2) A_inverse := inv(A); vector(float,2) x := A_inverse . b; print(A_inverse); print(x); }
+AST: declare(matrixfloat 2,2, A); (A = matrix(2,2,[[4.0, 7.0], [2.0, 6.0]])); declare(vectorfloat 2, b); (b = vector(2, [1.0, 2.0])); declare(float, detA); (detA = det(A)); if((detA != 0.)) declare(matrixfloat 2,2, A_inverse); (A_inverse = inv(A)); declare(vectorfloat 2, x); (x = (A_inverse . b)); print(A_inverse); print(x)
+Type: Statement
+Result: VUnit
+
+TC60:
+5.37228132327
+-0.372281323269
+Input: matrix(int, 2, 2) A := 2, 2 
+ [[1, 2], [3, 4]]; int trace := 5; int d := det(A); int D := trace * trace - 4 * d; if (D >= 0) { float eigenvalue1 := (trace + pow(D, 0.50 )) / 2.0; float eigenvalue2 := (trace - pow(D, 0.50)) / 2.0; print(eigenvalue1); print(eigenvalue2); } else { print(D); }
+AST: declare(matrixint 2,2, A); (A = matrix(2,2,[[1, 2], [3, 4]])); declare(int, trace); (trace = 5); declare(int, d); (d = det(A)); declare(int, D); (D = ((trace * trace) - (4 * d))); if((D >= 0)) declare(float, eigenvalue1); (eigenvalue1 = ((trace + (D ^ 0.5)) / 2.)); declare(float, eigenvalue2); (eigenvalue2 = ((trace - (D ^ 0.5)) / 2.)); print(eigenvalue1); print(eigenvalue2) else print(D)
+Type: Statement
+Result: VUnit
+
+TC61:
+0.6, -0.7
+-0.2, 0.4
+Input: matrix(float, 2, 2) A := 2, 2 
+ [[4.0, 7.0], [2.0, 6.0]]; matrix(float, 2, 2) cofactor_matrix; matrix(float, 2, 2) adjoint; matrix(float, 2, 2) inverse; if (det(A) != 0.0) { cofactor_matrix := 2, 2 
+ [[0.0, 0.0], [0.0, 0.0]]; for (int i := 0; i < 2; i := i + 1;) { for (int j := 0; j < 2; j := j + 1;) { matrix(float, 1, 1) minor_ij; minor_ij := minor(A,i,j); cofactor_matrix[i, j] := pow(-1, (i + j)) * det(minor_ij); } } adjoint := transpose(cofactor_matrix); inverse := (1.0 / det(A)) * adjoint; print(inverse); } else { print(MatrixNotInvertible); }
+AST: declare(matrixfloat 2,2, A); (A = matrix(2,2,[[4.0, 7.0], [2.0, 6.0]])); declare(matrixfloat 2,2, cofactor_matrix); declare(matrixfloat 2,2, adjoint); declare(matrixfloat 2,2, inverse); if((det(A) != 0.)) (cofactor_matrix = matrix(2,2,[[0.0, 0.0], [0.0, 0.0]])); for(declare(int, i); (i = 0); (i < 2); (i = (i + 1))) for(declare(int, j); (j = 0); (j < 2); (j = (j + 1))) declare(matrixfloat 1,1, minor_ij); (minor_ij = minor(A, i, j)); (cofactor_matrix[i][j] = (((-1) ^ (i + j)) * det(minor_ij))); (adjoint = transpose(cofactor_matrix)); (inverse = ((1. / det(A)) * adjoint)); print(inverse) else print(MatrixNotInvertible)
+Type: Statement
+Result: VUnit
+
+TC62:
+Runtime Error: Type error in addition: (v + b)
+
+TC63:
+0, 0
+Input: matrix(int, 2, 3) m := 2, 3 
+ [[1, 2, 3], [4, 5, 6]]; vector(int, 3) v := 3 
+ [0, 0, 0]; vector(int, 2) r := m . v; print(r);
+AST: declare(matrixint 2,3, m); (m = matrix(2,3,[[1, 2, 3], [4, 5, 6]])); declare(vectorint 3, v); (v = vector(3, [0, 0, 0])); declare(vectorint 2, r); (r = (m . v)); print(r)
+Type: Statement
+Result: VUnit
+
+TC64:
+Runtime Error: Matrix is not invertible (det = 0)
+
+TC65:
+10
+Input: matrix(int, 2, 2) m := 2, 2 
+ [[1, 2], [3, 4]]; int sum := 0; for (int i := 0; i < 2; i := i + 1;) { for (int j := 0; j < 2; j := j + 1;) { sum := sum + m[i, j]; } } print(sum);
+AST: declare(matrixint 2,2, m); (m = matrix(2,2,[[1, 2], [3, 4]])); declare(int, sum); (sum = 0); for(declare(int, i); (i = 0); (i < 2); (i = (i + 1))) for(declare(int, j); (j = 0); (j < 2); (j = (j + 1))) (sum = (sum + m[i][j])); print(sum)
+Type: Statement
+Result: VUnit
+
+TC66:
+-3, 3, -3
+Input: vector(int, 3) v1 := 3 
+ [1, -2, 3]; vector(int, 3) v2 := 3 
+ [-4, 5, -6]; vector(int, 3) r := v1 + v2; print(r);
+AST: declare(vectorint 3, v1); (v1 = vector(3, [1, -2, 3])); declare(vectorint 3, v2); (v2 = vector(3, [-4, 5, -6])); declare(vectorint 3, r); (r = (v1 + v2)); print(r)
+Type: Statement
+Result: VUnit
+
+TC67:
+3, 6
+9, 12
+Input: matrix(int, 2, 2) m := 2, 2 
+ [[1, 2], [3, 4]]; matrix(int, 2, 2) r := 3 * m; print(r);
+AST: declare(matrixint 2,2, m); (m = matrix(2,2,[[1, 2], [3, 4]])); declare(matrixint 2,2, r); (r = (3 * m)); print(r)
+Type: Statement
+Result: VUnit
+
+TC68:
+Error: Wrong type for expression: (v + m)
+
+TC69:
+0
+Input: matrix(int, 2, 2) m := 2, 2 
+ [[1, 2], [3, 4]]; int d := det(m); if (d > 0) { print(1); }  else { print(0); }
+AST: declare(matrixint 2,2, m); (m = matrix(2,2,[[1, 2], [3, 4]])); declare(int, d); (d = det(m)); if((d > 0)) print(1) else print(0)
+Type: Statement
+Result: VUnit
+
+TC70:
+3.2e-07
+Input: vector(float, 3) v1 := 3 
+ [0.0001, 0.0002, 0.0003]; vector(float, 3) v2 := 3 
+ [0.0004, 0.0005, 0.0006]; float r := v1 . v2; print(r);
+AST: declare(vectorfloat 3, v1); (v1 = vector(3, [0.0001, 0.0002, 0.0003])); declare(vectorfloat 3, v2); (v2 = vector(3, [0.0004, 0.0005, 0.0006])); declare(float, r); (r = (v1 . v2)); print(r)
+Type: Statement
+Result: VUnit
+
+TC71:
+Runtime Error: Index out of bounds in matrix: m
+
+TC72:
+1, 2, 3
+Input: vector(int, 3) v := 3 
+ [1, 2, 3]; int x := 0; for (x := 5; x < 3; x := x + 1;) { v[0] := 10; } print(v);
+AST: declare(vectorint 3, v); (v = vector(3, [1, 2, 3])); declare(int, x); (x = 0); for((x = 5); (x < 3); (x = (x + 1))) (v[0] = 10); print(v)
+Type: Statement
+Result: VUnit
+
